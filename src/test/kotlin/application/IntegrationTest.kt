@@ -14,7 +14,6 @@ import junit.framework.TestCase
 
 class IntegrationTest : TestCase() {
 
-
     fun `testar se o usuário foi criado`() = withTestApplication(Application::module) {
 
         val userFormDTO = UserFormDTO(username = "user1", password = "123")
@@ -27,10 +26,6 @@ class IntegrationTest : TestCase() {
             assertEquals(HttpStatusCode.Created, response.status())
             assertNotNull(jacksonObjectMapper().readValue(response.content, UserDTO::class.java).id)
         }
-    }
-
-    fun `testar se o usuário foi atualizado`() = withTestApplication(Application::module) {
-
     }
 
 }

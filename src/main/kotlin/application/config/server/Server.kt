@@ -1,5 +1,6 @@
 package application.config.server
 
+import application.config.constants.ApplicationConstants
 import application.config.koin.KoinModuleConfig
 import application.config.persistence.DatabaseFactory
 import application.config.properties.PropertiesUtil
@@ -25,8 +26,8 @@ fun startServer(args: Array<String> = arrayOf()): NettyApplicationEngine {
 }
 
 fun Application.module() {
-    
-    DatabaseFactory.init(createSchema = PropertiesUtil.getProperty("create-schema").toBoolean())
+
+    DatabaseFactory.init(createSchema = PropertiesUtil.getProperty(ApplicationConstants.CREATE_SCHEMA).toBoolean())
     startKoin(
         listOf(KoinModuleConfig.applicationModule)
     )
@@ -38,6 +39,7 @@ fun Application.module() {
             setSerializationInclusion(JsonInclude.Include.NON_NULL)
         }
     }
+
     install(Routing) {
         val userService: UserService by inject()
         setup(userService)
