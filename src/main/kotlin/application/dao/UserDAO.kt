@@ -7,4 +7,6 @@ interface UserDAO {
 
    fun create(userFormDTO: UserFormDTO): UserDTO
 
+   fun findById(id: String): UserDTO?
+
 }

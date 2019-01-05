@@ -16,7 +16,7 @@ class IntegrationTest : TestCase() {
 
     fun `testar se o usuário foi criado`() = withTestApplication(Application::module) {
 
-        val userFormDTO = UserFormDTO(username = "user1", password = "123")
+        val userFormDTO = UserFormDTO(username = "user1", password = "123", email = "user1@user.com")
 
         var requestBody = jacksonObjectMapper().writeValueAsString(userFormDTO)
 
